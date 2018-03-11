@@ -28,14 +28,10 @@
 
                 <div class="side-content fr">
                     @yield('content')
-
                 </div> <!-- end side-content -->
 
             </div> <!-- end full-width -->
-
         </div> <!-- end content -->
-
-
 
         <!-- FOOTER -->
         <div id="footer">

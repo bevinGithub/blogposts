@@ -1,5 +1,5 @@
 <?php
-
+use App\Role;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,8 +20,16 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('/roles', function(){
+   $role = new Role();
+   $role->name = "Subscriber";
+   $role->save(); 
+});
+
 Route::resource('admin/users', 'AdminUsersController');
 
 Route::get('/admin', function() {
     return view ('admin.index');
 });
+
+// Route::get('admin/users/{id}/edit', 'AdminUsersController');
