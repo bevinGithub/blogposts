@@ -1,0 +1,2 @@
+<p>&copy; Copyright 2012 <a href="#">Business Directory</a>. All rights reserved.</p>
+<p><strong>Admin</strong> theme by <a target='_blank' href="https://www.btechsolutions.co.za">BTech Solutions</a></p>
