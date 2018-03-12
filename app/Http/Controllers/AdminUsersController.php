@@ -24,7 +24,7 @@ class AdminUsersController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.users.create');
     }
 
     /**
@@ -81,5 +81,8 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function bevin(){
+
     }
 }

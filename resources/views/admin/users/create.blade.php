@@ -6,7 +6,7 @@
 				
         <div class="content-module-heading cf">
         
-            <h3 class="fl">Form Elements</h3>
+            <h3 class="fl">Create Post</h3>
             <span class="fr expand-collapse-text">Click to collapse</span>
             <span class="fr expand-collapse-text initial-expand">Click to expand</span>
         
@@ -17,36 +17,31 @@
     
             <div class="half-size-column fl">
             
-                <form action="#">
+                {{--  <form action="#">  --}}
                 
+                {!! Form::open(['method'=>'POST','action' => 'AdminUsersController@create']) !!}
                     <fieldset>
                     
-                        <p>
-                            <label for="simple-input">Simple input</label>
-                            <input type="text" id="simple-input" class="round default-width-input" />
+                        <p>                            
+                            {!! Form::label('title', 'Title') !!}
+                             {!! Form::text('title', null, ['id' => 'simple-input','class' => 'round default-width-input']) !!}
                         </p>
                         
                         <p>
+                            {!! Form::label('description', 'Description') !!}
+                            {!! Form::text('description', null, ['id' => 'simple-input', 'class' => 'round default-width-input']) !!}
+                            
                             <label for="full-width-input">A full width input</label>
-                            <input type="text" id="full-width-input" class="round full-width-input"/>
-                            <em>This is a full width input. It will take 100% of the available width.</em>								
+                            <input type="text" id="full-width-input" class="round full-width-input"/>								
                         </p>
-
                         <p>
-                            <label for="another-simple-input">Text input with additional description</label>
-                            <input type="text" id="another-simple-input" class="round default-width-input"/>
-                            <em>You can add a hint or a small description here.</em>								
+                            {!! Form::submit('Save', ['class'=>'round blue ic-right-arrow']) !!}
                         </p>
-
-                        <p class="form-error">
-                            <label for="error-input">Error text input</label>
-                            <input type="text" id="error-input" class="round default-width-input error-input"/>
-                            <em>This is an optional error description that can be associated with an input.</em>								
-                        </p>
-                        
                     </fieldset>
                 
-                </form>
+                
+                {!! Form::close() !!}
+                
             
             </div> <!-- end half-size-column -->
             
