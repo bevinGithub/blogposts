@@ -6,7 +6,7 @@
 				
         <div class="content-module-heading cf">
         
-            <h3 class="fl">Create Post</h3>
+            <h3 class="fl">New User</h3>
             <span class="fr expand-collapse-text">Click to collapse</span>
             <span class="fr expand-collapse-text initial-expand">Click to expand</span>
         
@@ -17,77 +17,38 @@
     
             <div class="half-size-column fl">
             
-                {{--  <form action="#">  --}}
-                
-                {!! Form::open(['method'=>'POST','action' => 'AdminUsersController@create']) !!}
+                {!! Form::open(['method'=>'POST','action' => 'AdminUsersController@store']) !!}
                     <fieldset>
                     
                         <p>                            
-                            {!! Form::label('title', 'Title') !!}
-                             {!! Form::text('title', null, ['id' => 'simple-input','class' => 'round default-width-input']) !!}
+                            {!! Form::label('name', 'Name') !!}
+                             {!! Form::text('name', null, ['id' => 'simple-input','class' => 'round default-width-input']) !!}
                         </p>
-                        
+                        <p>                            
+                            {!! Form::label('email', 'Email') !!}
+                             {!! Form::text('email', null, ['id' => 'simple-input','class' => 'round default-width-input']) !!}
+                        </p>
+                        <p>                            
+                            {!! Form::label('status', 'Status') !!}
+                            {!! Form::select('is_active', ['1' => 'Active', '0' => 'Not Active'], null, ['placeholder' => 'Select User Status'], ['class'=>'round default-width-input']) !!}
+                        </p>
+                        <p>                            
+                            {!! Form::label('role_id', 'User Role') !!}                            
+                            {!! Form::select('role_id', ['Administrator' => 'Administrator', 'Subscriber' => 'Subscriber'], null,['placeholder' => 'Select User Role'], ['class'=>'round default-width-input']) !!}
+                        </p>
                         <p>
-                            {!! Form::label('description', 'Description') !!}
-                            {!! Form::text('description', null, ['id' => 'simple-input', 'class' => 'round default-width-input']) !!}
-                            
-                            <label for="full-width-input">A full width input</label>
-                            <input type="text" id="full-width-input" class="round full-width-input"/>								
+                            {!! Form::label("Content", null, ["id" => ""]) !!}                            
+                            {!! Form::text("content", null, ["class" => "round full-width-textarea"]) !!}
                         </p>
                         <p>
-                            {!! Form::submit('Save', ['class'=>'round blue ic-right-arrow']) !!}
+                            {!! Form::submit('Create User', ['class'=>'round blue ic-right-arrow']) !!}
                         </p>
-                    </fieldset>
-                
+                    </fieldset>               
                 
                 {!! Form::close() !!}
                 
             
-            </div> <!-- end half-size-column -->
-            
-            <div class="half-size-column fr">
-            
-                <form action="#">
-                
-                    <fieldset>
-                    
-                        <p>
-                            <label for="textarea">Textarea</label>
-                            <textarea id="textarea" class="round full-width-textarea"></textarea>
-                        </p>
-                        
-                        <div class="stripe-separator"><!--  --></div>
-
-                        <p>
-                            <label>Checkboxes</label>
-                            <label for="selected-checkbox" class="alt-label"><input type="checkbox" id="selected-checkbox" checked="checked" />A selected checkbox</label>
-                            <label for="unselected-checkbox" class="alt-label"><input type="checkbox" id="unselected-checkbox" />An uselected checkbox</label>
-                        </p>
-
-                        <p>
-                            <label>Radio buttons</label>
-                            <label for="selected-radio" class="alt-label"><input type="radio" id="selected-radio" checked="checked" />A selected radio</label>
-                            <label for="unselected-radio" class="alt-label"><input type="radio" id="unselected-radio" />An uselected radio</label>
-                        </p>
-
-                        <p class="form-error-input">
-                            <label for="dropdown-actions">Dropdown</label>
-
-                            <select id="dropdown-actions">
-                                <option value="option1">Select your action here</option>
-                            </select>
-                        </p>
-
-                        <div class="stripe-separator"><!--  --></div>
-
-                        <input type="submit" value="Submit Button" class="round blue ic-right-arrow" />
-                        
-                    </fieldset>
-                
-                </form>
-                
-            </div> <!-- end half-size-column -->
-    
+            </div>     
         </div> <!-- end content-module-main -->
         
     </div>
