@@ -34,7 +34,7 @@
                         </p>
                         <p>                            
                             {!! Form::label('role_id', 'User Role') !!}                            
-                            {!! Form::select('role_id', ['Administrator' => 'Administrator', 'Subscriber' => 'Subscriber'], null,['placeholder' => 'Select User Role'], ['class'=>'round default-width-input']) !!}
+                            {!! Form::select('role_id', $roles, ['class'=>'round default-width-input']) !!}
                         </p>
                         <p>
                             {!! Form::label("Content", null, ["id" => ""]) !!}                            
