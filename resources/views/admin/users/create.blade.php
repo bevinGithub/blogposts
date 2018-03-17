@@ -17,9 +17,9 @@
     
             <div class="half-size-column fl">
             
-                {!! Form::open(['method'=>'POST','action' => 'AdminUsersController@store']) !!}
+                {!! Form::open(['method'=>'POST','action' => 'AdminUsersController@store', 'files' => true]) !!}
                     <fieldset>
-                    
+                        {{csrf_field()}}
                         <p>                            
                             {!! Form::label('name', 'Name') !!}
                              {!! Form::text('name', null, ['id' => 'simple-input','class' => 'round default-width-input']) !!}
@@ -34,11 +34,18 @@
                         </p>
                         <p>                            
                             {!! Form::label('role_id', 'User Role') !!}                            
-                            {!! Form::select('role_id', $roles, ['class'=>'round default-width-input']) !!}
+                            {!! Form::select('role_id',['' => "Select Role"] + $roles, ['id'=>'dropdown-actions', 'class' => 'round default-width-input']) !!}
                         </p>
                         <p>
-                            {!! Form::label("Content", null, ["id" => ""]) !!}                            
-                            {!! Form::text("content", null, ["class" => "round full-width-textarea"]) !!}
+                            {{-- {!! Form::label("Content", null, ["id" => ""]) !!}                            
+                            {!! Form::text("content", null, ["class" => "round full-width-textarea"]) !!} --}}
+                        </p>
+                        <p>
+                            {!! Form::file('profile_pic', ["class" => "round "]) !!}
+                        </p>
+                        <p>                            
+                            {!! Form::label('password', 'Password') !!}
+                             {!! Form::password('password', ['id' => 'simple-input','class' => 'round default-width-input']) !!}
                         </p>
                         <p>
                             {!! Form::submit('Create User', ['class'=>'round blue ic-right-arrow']) !!}
@@ -46,8 +53,9 @@
                     </fieldset>               
                 
                 {!! Form::close() !!}
-                
-            
+                #Alert The error message
+                @include('admin.includes.errors')
+
             </div>     
         </div> <!-- end content-module-main -->
         

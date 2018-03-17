@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use App\User;
 use App\Role;
+use App\Http\Requests\UsersRequest;
+// use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
+
 
 class AdminUsersController extends Controller
 {
@@ -14,7 +18,6 @@ class AdminUsersController extends Controller
      */
     public function index() {
         $users = User::all();
-        // echo "<pre>"; print_r($users);
         return view ('admin.users.index', compact('users'));
     }
 
@@ -35,9 +38,16 @@ class AdminUsersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(UsersRequest $request)
     {
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+        ]);
         echo '<pre>';print_r($_POST);
+        #$request->all();
+        
     }
 
     /**
