@@ -26,6 +26,7 @@
                     <th>Name</th>
                     <th>Status</th>
                     <th>Email</th>
+                    <th>Created</th>
                     <th>Actions</th>
                 </tr>
             
@@ -61,6 +62,7 @@
                     <td>{{$user->name}}</td>
                     <td>{{$user->is_active == 1 ? 'Active' : 'not Active'}}</td>
                     <td>{{$user->email}}</td>
+                    <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>
                     <a href="#" class="table-actions-button ic-table-edit"></a>
                         <a href="#" class="table-actions-button ic-table-delete"></a>

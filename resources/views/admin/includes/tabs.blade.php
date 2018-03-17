@@ -1,9 +1,9 @@
 <div class="page-full-width cf">	
     <ul id="tabs" class="fl">
-        <li><a href="dashboard.html" class="active-tab dashboard-tab">Dashboard</a></li>
-        <li><a href="page-full-width.html">Categories</a></li>
-        <li><a href="page-other.html">Posts</a></li>
-        <li><a href="page-other.html">Users</a></li>
+        <li><a href="/admin/dashboard" class="active-tab dashboard-tab">Dashboard</a></li>
+        <li><a href="/admin/categories">Categories</a></li>
+        <li><a href="/admin/posts">Posts</a></li>
+        <li><a href="/admin/users">Users</a></li>
     </ul> <!-- end tabs -->
 
     <!-- Change this image to your own company's logo -->

@@ -40,14 +40,16 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'password' => 'required',
-        ]);
-        echo '<pre>';print_r($_POST);
-        #$request->all();
-        
+        $user = new User();
+        $user->name = trim($_POST['name']);
+        $user->email = trim($_POST['email']);
+        $user->is_active = trim($_POST['is_active']);
+        $user->role_id = trim($_POST['role_id']);
+        $user->password = bcrypt(trim($_POST['password']));
+        $user->save();
+        // $request->all();
+        // User::create($request->all());
+        return redirect('/admin/users');
     }
 
     /**

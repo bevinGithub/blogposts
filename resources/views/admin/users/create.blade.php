@@ -36,12 +36,9 @@
                             {!! Form::label('role_id', 'User Role') !!}                            
                             {!! Form::select('role_id',['' => "Select Role"] + $roles, ['id'=>'dropdown-actions', 'class' => 'round default-width-input']) !!}
                         </p>
-                        <p>
-                            {{-- {!! Form::label("Content", null, ["id" => ""]) !!}                            
-                            {!! Form::text("content", null, ["class" => "round full-width-textarea"]) !!} --}}
-                        </p>
-                        <p>
-                            {!! Form::file('profile_pic', ["class" => "round "]) !!}
+                        <p>                            
+                            {!! Form::label('file','File', ["class" => ""]) !!}   
+                            {!! Form::file('file', null, ["class" => "form-control"]) !!}
                         </p>
                         <p>                            
                             {!! Form::label('password', 'Password') !!}
@@ -53,7 +50,7 @@
                     </fieldset>               
                 
                 {!! Form::close() !!}
-                #Alert The error message
+                {{-- Alert The error message --}}
                 @include('admin.includes.errors')
 
             </div>     
