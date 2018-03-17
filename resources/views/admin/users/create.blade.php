@@ -37,8 +37,8 @@
                             {!! Form::select('role_id',['' => "Select Role"] + $roles, ['id'=>'dropdown-actions', 'class' => 'round default-width-input']) !!}
                         </p>
                         <p>                            
-                            {!! Form::label('file','File', ["class" => ""]) !!}   
-                            {!! Form::file('file', null, ["class" => "form-control"]) !!}
+                            {!! Form::label('photo_id','File Upload', ["class" => ""]) !!}   
+                            {!! Form::file('photo_id', null, ["class" => "form-control"]) !!}
                         </p>
                         <p>                            
                             {!! Form::label('password', 'Password') !!}

@@ -28,8 +28,8 @@ Route::get('/roles', function(){
 
 Route::resource('admin/users', 'AdminUsersController');
 
-Route::get('/admin', function() {
-    return view ('admin.index');
-});
+// Route::get('/admin', function() {
+//     return view ('admin.index');
+// });
 
 // Route::get('admin/users/{id}/edit', 'AdminUsersController');

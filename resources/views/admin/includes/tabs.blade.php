@@ -3,7 +3,7 @@
         <li><a href="/admin/dashboard" class="active-tab dashboard-tab">Dashboard</a></li>
         <li><a href="/admin/categories">Categories</a></li>
         <li><a href="/admin/posts">Posts</a></li>
-        <li><a href="/admin/users">Users</a></li>
+        <li><a href="/admin/users'">Users</a></li>
     </ul> <!-- end tabs -->
 
     <!-- Change this image to your own company's logo -->
