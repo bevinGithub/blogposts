@@ -7,6 +7,7 @@ use App\Role;
 use App\Photo;
 
 use App\Http\Requests\UsersRequest;
+use App\Http\Requests\UsersEditRequest;
 // use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Http\Request;
 
@@ -42,22 +43,32 @@ class AdminUsersController extends Controller
      */
     public function store(UsersRequest $request)
     {
-        $input =$request->all();
+        #echo "<pre>"; print_r($_POST);exit;
+        if (trim($request->password) == '') {
+            $input = $request->except('password');
+        } else {
+            $input =$request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        
         if ($file = $request->file('photo_id')) {
             $name = time().$file->getClientOriginalName();
             $file->move('images', $name);
             $photo = Photo::create(['file' => $name]); 
             #get photo id to add to the users table
-            $photo_id = $photo->id;
+            $input['photo_id'] = $photo->id;
         }
-        $user = new User();
-        $user->name = trim($_POST['name']);
-        $user->email = trim($_POST['email']);
-        $user->is_active = trim($_POST['is_active']);
-        $user->role_id = trim($_POST['role_id']);
-        $user->photo_id = $photo_id;
-        $user->password = bcrypt(trim($_POST['password']));
-        $user->save();
+
+        
+        User::create($input);
+        // $user = new User();
+        // $user->name = trim($_POST['name']);
+        // $user->email = trim($_POST['email']);
+        // $user->is_active = trim($_POST['is_active']);
+        // $user->role_id = trim($_POST['role_id']);
+        // $user->photo_id = $photo_id;
+        // $user->password = bcrypt(trim($_POST['password']));
+        // $user->save();
         return redirect('/admin/users');
     }
 
@@ -92,9 +103,28 @@ class AdminUsersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(UsersEditRequest $request, $id)
     {
-        //
+        if (trim($request->password) == '') {
+            $input = $request->except('password');
+        } else {
+            $input =$request->all();
+            $input['password'] = bcrypt($request->password);
+        }
+        $user = User::findOrFail($id);
+        $input =$request->all();
+        #check if image is uploaded and update it
+        if ($file = $request->file('photo_id')) {
+            $name = time().$file->getClientOriginalName();
+            $file->move('images', $name);
+            $photo = Photo::create(['file' => $name]); 
+            #get photo id to add to the users table
+            $photo_id = $photo->id;
+            $input['photo_id'] = $photo->id;;
+        }
+        $user->update($input);
+
+        return redirect('/admin/users');
     }
 
     /**
@@ -105,7 +135,13 @@ class AdminUsersController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::findOrFail($id);
+        $input =$request->all();
+        echo "<pre>"; print_r($input->paa);exit;
+
+
+
+        
     }
     public function bevin(){
 

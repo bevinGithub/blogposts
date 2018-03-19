@@ -60,14 +60,16 @@
                 <tr>
                     <td><input type="checkbox"></td>
                     <td>{{$user->id}}</td>
-                    <td><img width="120" src="{{$user->photo ? $user->photo->file : 'no photo'}}"></td>
+                    <td><img width="120" src="{{$user->photo ? $user->photo->file : '/images/company-logo.png'}}"></td>
                     <td>{{$user->name}}</td>
                     <td>{{$user->is_active == 1 ? 'Active' : 'not Active'}}</td>
                     <td>{{$user->email}}</td>
                     <td>{{$user->created_at->diffForHumans()}}</td>
                     <td>
-                        <a href="/admin/users/{{$user->id}}/edit" class="table-actions-button ic-table-edit"></a>
-                        <a href="{{ URL::to('/admin/users/'. $user->id) }}" class="table-actions-button ic-table-delete"></a>
+                        <a href="{{ URL::to('/admin/users/'. $user->id).'/edit' }}" class="table-actions-button ic-table-edit"></a>
+                        {{--  <a href="/admin/users/{{$user->id}}/edit" class="table-actions-button ic-table-edit"></a>  --}}
+                        {{--  <a href="/admin/users/{{$user->id}}/destroy" class="table-actions-button ic-table-delete"></a>  --}}
+                        <a href="{{ URL::to('/admin/users/'. $user->id).'/delete' }}" class="table-actions-button ic-table-delete"></a>
                     </td>
                 </tr>
                 @endforeach
