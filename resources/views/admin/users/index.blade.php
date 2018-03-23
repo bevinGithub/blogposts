@@ -15,7 +15,9 @@
     
     
     <div class="content-module-main">
-    
+        @if(Session::has('delete_user'))
+           <div class="warning-box round">{!! session('delete_user') !!}</div>
+        @endif
         <table>
         
             <thead>
@@ -69,7 +71,7 @@
                         <a href="{{ URL::to('/admin/users/'. $user->id).'/edit' }}" class="table-actions-button ic-table-edit"></a>
                         {{--  <a href="/admin/users/{{$user->id}}/edit" class="table-actions-button ic-table-edit"></a>  --}}
                         {{--  <a href="/admin/users/{{$user->id}}/destroy" class="table-actions-button ic-table-delete"></a>  --}}
-                        <a href="{{ URL::to('/admin/users/'. $user->id).'/delete' }}" class="table-actions-button ic-table-delete"></a>
+                        <a href="{{ URL::to('/admin/users/'. $user->id).'/destroy' }}" class="table-actions-button ic-table-delete"></a>
                     </td>
                 </tr>
                 @endforeach

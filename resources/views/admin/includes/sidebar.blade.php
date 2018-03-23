@@ -10,5 +10,7 @@
 
     <li><a href="/admin/users/create">Add Users</a></li>
     <li><a href="/admin/users">Users</a></li>
+    <li><a href="/logout">Logout</a></li>
+
     
 </ul>

@@ -8,7 +8,7 @@ use App\Photo;
 
 use App\Http\Requests\UsersRequest;
 use App\Http\Requests\UsersEditRequest;
-// use Illuminate\Foundation\Validation\ValidatesRequests;
+use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
 
 
@@ -92,7 +92,7 @@ class AdminUsersController extends Controller
     {
         $user = User::findOrFail($id);
         $roles = Role::pluck('name', 'id')->toArray();
-        #echo "<pre>"; print_r($user);exit;
+        // echo "<pre>"; print_r($roles);exit;
         return view('admin.users.edit', compact('user','roles'));
     }
 
@@ -112,8 +112,6 @@ class AdminUsersController extends Controller
             $input['password'] = bcrypt($request->password);
         }
         $user = User::findOrFail($id);
-        $input =$request->all();
-        #check if image is uploaded and update it
         if ($file = $request->file('photo_id')) {
             $name = time().$file->getClientOriginalName();
             $file->move('images', $name);
@@ -122,6 +120,7 @@ class AdminUsersController extends Controller
             $photo_id = $photo->id;
             $input['photo_id'] = $photo->id;;
         }
+
         $user->update($input);
 
         return redirect('/admin/users');
@@ -136,13 +135,13 @@ class AdminUsersController extends Controller
     public function destroy($id)
     {
         $user = User::findOrFail($id);
-        $input =$request->all();
-        echo "<pre>"; print_r($input->paa);exit;
-
-
-
-        
+        $user->delete();   
+        #remove image     
+        unlink(public_path().$user->photo->file);
+        Session::flash('delete_user', 'The user has been deleted!');        
+        return redirect('/admin/users');      
     }
+
     public function bevin(){
 
     }

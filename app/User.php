@@ -30,12 +30,19 @@ class User extends Authenticatable
 
 
 
-    public function roles() {
+    public function role() {
         return $this->belongsTo('App\Role');
     }
 
     public function photo() {
         return $this->belongsTo('App\Photo');
+    }
+    #Check user if is Admin
+    public function isAdmin() {
+        if ($this->role->name == 'Administrator') {
+            return true;
+        }
+        return false;
     }
 
 }
