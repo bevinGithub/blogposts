@@ -71,6 +71,7 @@ body { font-size: 1em; /* Prevents an IE bug where em's scale out of proportion 
 /* ---------- GENERAL ---------- */
 .round {
 	border-radius: 0.3125em; /* 5/16 */
+	border-radius: 0.1em; /* 5/16 */
 	-moz-border-radius: 0.3125em; /* 5/16 */
 	-webkit-border-radius: 0.3125em; /* 5/16 */
 }

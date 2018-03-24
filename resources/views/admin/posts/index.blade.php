@@ -1,13 +1,11 @@
 @extends('layouts.admin')
 @section('content')
 
-
-
 <div class="content-module">
 				
     <div class="content-module-heading cf">
     
-        <h3 class="fl">Users List</h3>
+        <h3 class="fl">Posts List</h3>
         <span class="fr expand-collapse-text">Click to collapse</span>
         <span class="fr expand-collapse-text initial-expand">Click to expand</span>
     
@@ -15,8 +13,8 @@
     
     
     <div class="content-module-main">
-        @if(Session::has('delete_user'))
-           <div class="warning-box round">{!! session('delete_user') !!}</div>
+        @if(Session::has('delete_post'))
+           <div class="warning-box round">{!! session('delete_post') !!}</div>
         @endif
         <table>
         
@@ -26,10 +24,10 @@
                     <th><input type="checkbox" id="table-select-all"></th>
                     <th>Id</th>
                     <th>Photo</th>
+                    <th>Author</th>
                     <th>Name</th>
-                    <th>Status</th>
-                    <th>Email</th>
-                    <th>Role</th>
+                    <th>Blog</th>
+                    <th>Category</th>
                     <th>Created</th>
                     <th>Actions</th>
                 </tr>
@@ -59,21 +57,19 @@
             </tfoot>
             
             <tbody>
-                @foreach($users as $user)
+                @foreach($posts as $post)
                 <tr>
                     <td><input type="checkbox"></td>
-                    <td>{{$user->id}}</td>
-                    <td><img width="120" src="{{$user->photo ? $user->photo->file : '/images/company-logo.png'}}"></td>
-                    <td>{{$user->name}}</td>
-                    <td>{{$user->is_active == 1 ? 'Active' : 'not Active'}}</td>
-                    <td>{{$user->email}}</td>
-                    <td>{{$user->role->name:}}</td>
-                    <td>{{$user->created_at->diffForHumans()}}</td>
+                    <td>{{$post->id}}</td>
+                    <td><img width="120" src="{{$post->photo ? $post->photo->file : '/images/company-logo.png'}}"></td>
+                    <td>{{$post->user->name}}</td>
+                    <td>{{$post->title}}</td>post
+                    <td>{{$post->body}}</td>
+                    <td>{{$post->category ? $post->category->name : 'Uncategorised'}}</td>
+                    <td>{{$post->created_at->diffForHumans()}}</td>
                     <td>
-                        <a href="{{ URL::to('/admin/users/'. $user->id).'/edit' }}" class="table-actions-button ic-table-edit"></a>
-                        {{--  <a href="/admin/users/{{$user->id}}/edit" class="table-actions-button ic-table-edit"></a>  --}}
-                        {{--  <a href="/admin/users/{{$user->id}}/destroy" class="table-actions-button ic-table-delete"></a>  --}}
-                        <a href="{{ URL::to('/admin/users/'. $user->id).'/destroy' }}" class="table-actions-button ic-table-delete"></a>
+                        <a href="{{ URL::to('/admin/posts/'. $post->id).'/edit' }}" class="table-actions-button ic-table-edit"></a>
+                        <a href="{{ URL::to('/admin/posts/'. $post->id).'/destroy' }}" class="table-actions-button ic-table-delete"></a>
                     </td>
                 </tr>
                 @endforeach

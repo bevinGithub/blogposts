@@ -1,5 +1,6 @@
 <?php
 use App\Role;
+use App\Post;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,29 +19,37 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
+// Route::get('/roles', function(){
+//    $role = new Role();
+//    $role->name = "subscriber";
+//    $role->save(); 
+// });
 
-Route::get('/roles', function(){
-   $role = new Role();
-   $role->name = "Subscriber";
-   $role->save(); 
+// Route::get('/addpost', function () {
+//     $post = new Post();
+//     $post->title = 'Laravel post';
+//     $post->body = 'this is the content of the post in laravel test data';
+//     $post->user_id = 1;
+//     $post->save();
+// });
+
+Route::get('/', function() {
+    if (Auth::check()) {
+        return "User is logged in";
+    }
 });
-
-
-// Route::resource('admin/users/edit/{user}/', 'AdminUsersController@edit');
-// Route::resource('admin/users/{update}', 'AdminUsersController@update');
-// Route::resource('admin.users', 'AdminUsersController@destroy');
-
-
-// Route::get('admin/users/create', 'AdminUsersController@create');
-// Route::post('admin/users/store', 'AdminUsersController@store');
-// Route::get('admin/users/', 'AdminUsersController@index');
-// Route::patch('admin/users/update/{id}', 'AdminUsersController@update');
-// Route::get('admin/users/{user}/edit', 'AdminUsersController@edit');
-// Route::delete('admin/users/{user}', 'AdminUsersController@update@destroy');
-
+ 
+Auth::routes();
+Route::get('/home', 'HomeController@index');
 
 Route::group(['middleware' => 'admin'], function() {
     Route::resource('admin/users', 'AdminUsersController');    
-    Route::get('admin/users/{id}/destroy', 'AdminUsersController@destroy');   
+    Route::get('admin/users/{id}/destroy', 'AdminUsersController@destroy'); 
+    Route::get('admin/', function() {
+        return view('admin/index');
+    });  
+    Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
+    Route::resource('admin/posts', 'AdminPostsController');
 });
